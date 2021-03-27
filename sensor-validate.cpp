@@ -5,11 +5,6 @@
 
 bool isMeasurementJumpedAbruptly(double* values, int numOfValues, int maxDelta) 
 {
-    if (values == nullptr)
-    {
-        return false;
-    }
-
     int lastButOneIndex = numOfValues - 1;
     for (int i = 0; i < lastButOneIndex; i++) {
         if((values[i + 1] - values[i]) > maxDelta)
@@ -19,13 +14,24 @@ bool isMeasurementJumpedAbruptly(double* values, int numOfValues, int maxDelta)
     }
     return true;
 }
-
+bool ValidateInputValues(double* values)
+{
+    if (values == nullptr)
+        return false;
+    return true;
+}
 bool validateSOCreadings(double* values, int numOfValues) 
-{  
+{
+    if (!ValidateInputValues(values))
+        return false;
+
     return isMeasurementJumpedAbruptly(values, numOfValues, MAX_SOC_DELTA);
 }
 
 bool validateCurrentreadings(double* values, int numOfValues) 
 {
+    if (!ValidateInputValues(values))
+        return false;
+
     return isMeasurementJumpedAbruptly(values, numOfValues, MAX_CURRENT_DELTA);
 }
