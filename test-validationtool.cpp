@@ -15,3 +15,7 @@ TEST_CASE("reports error when current jumps abruptly") {
   REQUIRE(validateSOCreadings(currentReadings, numOfCurReadings) == false);
 }
 
+TEST_CASE("reports error when current readings are null") {
+	double *values = nullptr;
+	REQUIRE(validateSOCreadings(values, 1) == false);
+}
